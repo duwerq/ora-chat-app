@@ -31,8 +31,8 @@ function createUserError(error, meta) {
 export function createUser(details) {
 	return dispatch => {
 		dispatch(createUserRequest());
-		
-		let params = {
+		console.log("details", details)
+		/*let params = {
 			name: details.name,
 			email: details.email,
 			password: details.password,
@@ -55,6 +55,6 @@ export function createUser(details) {
 		}).catch(error => {
 			console.log('createUserError ERROR', error);
 			dispatch(createUserError(error));
-		});
+		});*/
 	}
 }
