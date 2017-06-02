@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
+//components
+import {AutoSuggestComponent} from './AutoSuggestComponent'
+
+//styles
 import '../../App.css';
 import '../../styles/Chats.css';
 
@@ -15,9 +20,9 @@ class Chats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      filter: null
     }
-    
+    this._filterMessages = this._filterMessages.bind(this);
   }
 
   componentWillMount() {
@@ -27,35 +32,80 @@ class Chats extends Component {
     })
   }
 
+  _filterMessages(message) {
+    this.setState({
+      filterData: message
+    })
+    
+  }
+
   render() {
     let {chats} = this.props;
     console.log("chats", chats, this.state)
+    let searchOptions = []
+    chats.map((chat, i) => {
+      let lastChatMessage = chat.last_chat_message
+        searchOptions.push({
+          text: lastChatMessage.message,
+        })
+        searchOptions.push({
+          text: lastChatMessage.user.name,
+        })
+        searchOptions.push({
+          text: chat.name,
+        })
+      })
     return (
       <div className="chats-container">
+        <div className="auto-suggest-container">
+          <AutoSuggestComponent searchOptions={searchOptions} selected={this._filterMessages}/>
+        </div>
         {chats.map((chat, i) => {
-          let lastMessageDate = chat.last_chat_message.created_at
+          let lastChatMessage = chat.last_chat_message
+          let lastMessageDate = lastChatMessage.created_at
           let chatName = chat.name
-          let userName = chat.last_chat_message.user.name.split(" ")[0]
-          let message = chat.last_chat_message.message
+          let userName = lastChatMessage.user.name.split(" ")[0]
+          let message = lastChatMessage.message
           let currentDate = this.state.currentDate.format("YYYY-MM-DD")
-          let formatMessageDate = moment(chat.last_chat_message.created_at).format("YYYY-MM-DD")
+          let formatMessageDate = moment(lastChatMessage.created_at).format("YYYY-MM-DD")
           let messageDate = ''
           let fromNow = this.state.currentDate.fromNow()
-          currentDate !== formatMessageDate ? (messageDate = moment(chat.last_chat_message.created_at).format('MMM D')): (messageDate = "Today")
-          return(
-            <div className={`chats-message-container ${i}`} key={i}>
-              <div className='chats-message-date'>
-                <span>{messageDate}</span>
-              </div>
-              <div className="chats-message-details">
-                <div className="chats-message-name">{`${chatName} by ${userName}`}</div>
-                <div className="chats-from-now">{`${userName} - ${fromNow}`}</div>
-                <div className="chats-message">{message}</div>
+          currentDate !== formatMessageDate ? (messageDate = moment(lastChatMessage.created_at).format('MMM D')): (messageDate = "Today")
           
-              </div>
+          if (this.state.filter) {
+            if (this.state.filter === (chatName || userName || message)) {
+              return(
+                <div className={`chats-message-container ${i}`} key={i}>
+                  <div className='chats-message-date'>
+                    <span>{messageDate}</span>
+                  </div>
+                  <div className="chats-message-details">
+                    <div className="chats-message-name">{`${chatName} by ${userName}`}</div>
+                    <div className="chats-from-now">{`${userName} - ${fromNow}`}</div>
+                    <div className="chats-message">{message}</div>
               
-            </div>
-        )
+                  </div>
+                  
+                </div>
+              )
+            }
+          } else {
+            return(
+                <div className={`chats-message-container ${i}`} key={i}>
+                  <div className='chats-message-date'>
+                    <span>{messageDate}</span>
+                  </div>
+                  <div className="chats-message-details">
+                    <div className="chats-message-name">{`${chatName} by ${userName}`}</div>
+                    <div className="chats-from-now">{`${userName} - ${fromNow}`}</div>
+                    <div className="chats-message">{message}</div>
+              
+                  </div>
+                  
+                </div>
+              )
+          }
+          
         })}
       </div>
     );
