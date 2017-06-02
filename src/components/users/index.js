@@ -7,6 +7,7 @@ import '../../styles/Users.css'
 
 //header
 import Header from '../header'
+
 //actions
 import {createUser}  from '../../actions/users/createUser'
 
@@ -23,7 +24,6 @@ class CreateUser extends Component {
   }
 
   _submitForm() {
-    console.log("this props", this.props)
     this.props.dispatch(createUser(this.state))
   }
 
@@ -80,7 +80,6 @@ class CreateUser extends Component {
 
 export default withRouter(connect(
   state => {
-    console.log('stated', state)
     return {
       users: state.users,
     };

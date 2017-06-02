@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router';
 import '../../App.css';
 import '../../styles/Users.css'
 
@@ -22,8 +23,7 @@ class Login extends Component {
   }
 
   _submitForm() {
-    console.log("this props", this.props)
-    //this.props.dispatch(login(this.state))
+    this.props.dispatch(login(this.state))
   }
 
   render() {
@@ -51,7 +51,9 @@ class Login extends Component {
             />
           </div>
         </div>
+        {!this.props.auth ? null : <Redirect push to="/chats" />}
       </div>
+
     );
   }
 }
@@ -60,7 +62,7 @@ export default withRouter(connect(
   state => {
     console.log('auth', state)
     return {
-      users: state.auth,
+      auth: state.auth.data,
     };
   }
 )

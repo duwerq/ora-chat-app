@@ -12,20 +12,21 @@ export default (state = defaultState, action) => {
       newState.loading = true;
       return newState;
     case 'LOGIN_RESPONSE':
-    	newState.data = action.data
+    console.log("login response", action.payload)
+    	newState.data = action.payload
     	newState.meta = action.meta
     	newState.loading = false;
     	return newState;
-    case 'LOGIN_RESPONSE':
-    	newState.error = action.error
-    	newState.meta = action.meta
-    	newState.loading = false;
-    	return newState;
+     case 'LOGIN_ERROR':
+      newState.error = action.error
+      newState.meta = action.meta
+      newState.loading = false;
+      return newState;
     case 'LOGOUT_REQUEST':
       newState.loading = true;
       return newState;
     case 'LOGOUT_RESPONSE':
-      newState.data = action.data
+      newState.data = action.d
       newState.meta = action.meta
       newState.loading = false;
       return newState;

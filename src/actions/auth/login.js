@@ -33,15 +33,13 @@ export function login(name, email, password, password_confirmation) {
 		let params = {
 			name: name,
 			email: email,
-			password: password,
-			password_confirmation: password_confirmation
 		}
 		post('/users', params, {
 		}).then(response => {
 			if(response){
 				if(response.data){
 					console.log('users/loginResponse', response);
-					dispatch(loginResponse(response.data))
+					dispatch(loginResponse(response.data.data))
 				} else{
 					console.log("users/loginError NULL response.data", response);
 					dispatch(loginError('NULL response.data'));

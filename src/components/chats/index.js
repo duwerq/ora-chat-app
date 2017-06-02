@@ -41,7 +41,6 @@ class Chats extends Component {
 
   render() {
     let {chats} = this.props;
-    console.log("chats", chats, this.state)
     let searchOptions = []
     chats.map((chat, i) => {
       let lastChatMessage = chat.last_chat_message
@@ -114,7 +113,6 @@ class Chats extends Component {
 
 export default withRouter(connect(
   state => {
-    console.log('auth', state)
     return {
       chats: state.chats.data,
     };

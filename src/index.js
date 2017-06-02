@@ -13,34 +13,31 @@ import io from 'socket.io-client';
 
 
 // components
-import App from "./App"
 import CreateUser from './components/users'
 import Login from './components/auth/login'
 import Chats from './components/chats'
 
 
-let socket = io('https://private-93240c-oracodechallenge.apiary-mock.com/chats?page=1&limit=50', {
+/*let socket = io('https://private-93240c-oracodechallenge.apiary-mock.com/chats', {
   extraHeaders: {
     "Content-Type": "application/json; charset=UTF-8",
     "Authorization" :"Bearer BBJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9",
     "Access-Control-Allow-Credentials": true,
   }
   });
-let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
+let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");*/
 
 const history = createHistory()
 
 const middleware = routerMiddleware(history)
 
-const createStoreWithMiddleware = applyMiddleware(middleware, thunkMiddleware, socketIoMiddleware);
+const createStoreWithMiddleware = applyMiddleware(middleware, thunkMiddleware);
 
 const store = createStore(
   reducers,
   createStoreWithMiddleware,
-
 )
 
-console.log("store", store)
 ReactDOM.render(
   <Provider store={store}>    
     <ConnectedRouter history={history}>
