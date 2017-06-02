@@ -4,14 +4,16 @@ const _defaultHeaders = {
   'Content-Type': 'application/json; charset=UTF-8'
 };
 
-function _request(method = 'GET', url, params = {}, headers = {}) {
+function _request(method = 'GET', path, params = {}, headers = {}) {
   let defaultHeaders = Object.assign({}, _defaultHeaders, headers);
   let axiosParams = Object.assign({}, params);
+  let baseURL = 'https://private-93240c-oracodechallenge.apiary-mock.com'
+  let url = baseURL + path
   let options = {
     method,
     url,
     headers: defaultHeaders,
-    timeout: 30000
+    timeout: 30000,
   };
   if (method.toUpperCase() === 'GET') {
     options.params = axiosParams;

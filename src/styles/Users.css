@@ -1,0 +1,17 @@
+.Register-form {
+	padding: 5%;
+}
+
+.Register-form form {
+	display: flex;
+	flex-direction: column;
+}
+
+.Register-form input {
+	border: none;
+	outline: none;
+	width: 100%;
+	min-height: 44px;
+	border-bottom: 1px solid rgb(217, 216, 219);
+	font-size: 17px; font-size: 1.05em;
+}
