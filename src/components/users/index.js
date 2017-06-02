@@ -22,13 +22,13 @@ class CreateUser extends Component {
 
   _submitForm() {
     console.log("this props", this.props)
-    this.props.dispatch(createUser())
+    this.props.dispatch(createUser(this.state))
   }
 
   render() {
     return (
       <div className="Register-form">
-        
+        <form>
           <div>
             <input 
               type="text" 
@@ -67,6 +67,7 @@ class CreateUser extends Component {
             />
           </div>
           <div onClick={this._submitForm}>Submit</div>
+          </form>
       </div>
     );
   }

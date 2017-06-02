@@ -26,15 +26,15 @@ function createUserError(error) {
 }
 
 
-export function createUser(name, email, password, password_confirmation) {
+export function createUser(details) {
 	return dispatch => {
 		dispatch(createUserRequest());
 		
 		let params = {
-			name: name,
-			email: email,
-			password: password,
-			password_confirmation: password_confirmation
+			name: details.name,
+			email: details.email,
+			password: details.password,
+			password_confirmation: details.passwordConfirmation
 		}
 		post('/users', params, {
 		}).then(response => {
@@ -43,15 +43,15 @@ export function createUser(name, email, password, password_confirmation) {
 					console.log('users/createUserResponse', response);
 					dispatch(createUserResponse(response.data))
 				} else{
-					console.log("(users/creatUserError) NULL response.data", response);
+					console.log("users/creatUserError NULL response.data", response);
 					dispatch(createUserError('NULL response.data'));
 				}
 			} else{
-				console.log('(actions/services/fetchServices.js) NULL response', response);
+				console.log('createUserError NULL response', response);
 				dispatch(createUserError('NULL response'));
 			}
 		}).catch(error => {
-			console.log('(actions/services/fetchServices.js) ERROR', error);
+			console.log('createUserError ERROR', error);
 			dispatch(createUserError(error));
 		});
 	}
