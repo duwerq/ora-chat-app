@@ -37,12 +37,14 @@ const store = createStore(
   reducers,
   createStoreWithMiddleware,
 )
-
+console.log('heyo')
 ReactDOM.render(
   <Provider store={store}>    
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path="/login" component={Login}/>
+
+        <Route exact path="/" component={Login}/>
+        <Route  path="/login" component={Login}/>
         <Route path="/register" component={CreateUser}/>
         <Route path="/chats" component={Chats}/>
       </div>

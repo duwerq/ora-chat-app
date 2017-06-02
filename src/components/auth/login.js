@@ -27,6 +27,7 @@ class Login extends Component {
   }
 
   render() {
+    console.log('heyo')
     return (
       <div>
       <Header title={"OraChat"} navLeft={"Register"} navRight="Login" submitForm={this._submitForm}/>
