@@ -25,7 +25,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Register-form">
+      <div className="register-form">
         <div>
           <input 
             type="email" 

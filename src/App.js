@@ -13,6 +13,7 @@ class App extends Component {
         </div>
         <Link to="/register">Regsiter</Link>
         <Link to="/login">Login</Link>
+        <Link to="/chats">Chats</Link>
       </div>
     );
   }

@@ -27,7 +27,7 @@ class CreateUser extends Component {
 
   render() {
     return (
-      <div className="Register-form">
+      <div className="register-form">
         <form>
           <div>
             <input 

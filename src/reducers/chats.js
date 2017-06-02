@@ -1,6 +1,6 @@
 export const defaultState = {
 loading: null,
-data: null,
+data: [],
 meta: null,
 errors: null,
 };
@@ -8,15 +8,16 @@ errors: null,
 export default (state = defaultState, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
-    case 'CREATE_USER_REQUEST':
+    case 'LIST_CHATS_REQUESTED':
       newState.loading = true;
       return newState;
-    case 'CREATE_USER_RESPONSE':
+    case 'LIST_CHATS_RESPONSE':
+    console.log("response", action.payload)
     	newState.data = action.payload
     	newState.meta = action.meta
     	newState.loading = false;
     	return newState;
-    case 'CREATE_USER_ERROR':
+    case 'LIST_CHATS_ERROR':
     	newState.error = action.error
     	newState.meta = action.meta
     	newState.loading = false;

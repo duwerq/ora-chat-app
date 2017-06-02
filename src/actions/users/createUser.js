@@ -11,17 +11,19 @@ function createUserRequest() {
   }
 }
 
-function createUserResponse(payload) {
+function createUserResponse(payload, meta) {
   return {
     type: 'CREATE_USER_RESPONSE',
-    payload
+    payload,
+    meta
   }
 }
 
-function createUserError(error) {
+function createUserError(error, meta) {
   return {
     type: 'CREATE_USER_ERROR',
-    error
+    error,
+    meta
   }
 }
 

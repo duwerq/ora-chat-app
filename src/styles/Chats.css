@@ -1,0 +1,33 @@
+.chats-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.chats-message-container {	
+	border-bottom: 1px solid rgb(226, 225, 228);
+}
+
+.chats-message-date {
+	display: flex;
+	flex-direction: column;
+	height: 26px;
+	background-color: rgb(247, 247, 247);
+	justify-content: center;
+	padding-left: 5px;
+
+}
+
+
+.chats-message-details {
+	padding: 10px;
+	padding-bottom: 20px;
+}
+
+.chats-from-now {
+	color: rgb(245, 170, 44);
+}
+
+.chats-message {
+	color: rgb(155, 154, 159);
+}

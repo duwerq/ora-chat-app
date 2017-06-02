@@ -12,6 +12,7 @@ import reducers from './reducers'
 import App from "./App"
 import CreateUser from './components/users'
 import Login from './components/auth/login'
+import Chats from './components/chats'
 
 const history = createHistory()
 
@@ -32,6 +33,7 @@ ReactDOM.render(
         <Route exact path="/" component={App}/>
         <Route path="/register" component={CreateUser}/>
         <Route path="/login" component={Login}/>
+        <Route path="/chats" component={Chats}/>
       </div>
     </ConnectedRouter>
   </Provider>,
